@@ -1,0 +1,3 @@
+[submodule "testweave-docker"]
+	path = testweave-docker
+	url = https://github.com/ArweaveTeam/testweave-docker.git
