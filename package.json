@@ -1,0 +1,8 @@
+{
+  "type": "module",
+  "dependencies": {
+    "arweave": "^1.10.16",
+    "smartweave": "^0.4.41",
+    "testweave-sdk": "^0.2.2"
+  }
+}
