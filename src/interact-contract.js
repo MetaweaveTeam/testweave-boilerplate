@@ -17,10 +17,6 @@ import INPUT from './INPUT.js';
   
   const testWeave = await TestWeave.default.init(arweave);
 
-  // generate a wallet
-  const jkw = await arweave.wallets.generate();
-  const generatedAddr = await arweave.wallets.getAddress(jkw)
-
   console.log(`\ncontract ID: ${CONF.contract_id}`);
   console.log("\ninput: ", INPUT);
 
@@ -38,6 +34,13 @@ import INPUT from './INPUT.js';
     console.log("\nmining...");
     await testWeave.mine();
     
+    /* 
+     *  Make a dummy interaction because of a testweave-docker bug 
+     *  that shows only the penultimate state of a contract
+     */
+    await interactWrite(arweave, testWeave.rootJWK, CONF.contract_id, {});
+    await testWeave.mine();
+
     const contractState = await readContract(arweave, CONF.contract_id);
     console.log(`\nContract State: ${JSON.stringify(contractState)}\n`);
   }
