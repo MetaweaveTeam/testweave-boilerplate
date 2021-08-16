@@ -2,20 +2,54 @@
 
 Here is a simple boilerplate to code smartweave contracts and iterate tests quickly.
 
-# Setup
+# Getting started
 
 1. `$ git clone git@github.com:bidetaggle/testweave-boilerplate.git --recursive`
 2. `$ cd testweave-boilerplate/`
 3. `$ npm install`
 
-# Usage.
+# Initialization
 
-1. Open a terminal in `testweave-docker/` and `$ docker-compose up`
-2. Open a second terminal and `$ cd src/`
-3. Edit `CONTRACT_NAME` value in `config.json` to match with the contract you want to work in 'contracts/'
-4. Deploy the last version of the contract you are working on: `$ node create-contract.js`
-5. Edit `INPUT.js` and run `$ node interact-contract.js` to test different interactions with your contract
-6. Modify your contract and go back to 4. 🙂
+1. Run testweave-docker
+
+```
+$ cd testweave-docker
+$ docker-compose up
+```
+
+2. In a separate terminal, `$ cd src/`
+
+3. Generate user wallets
+
+```
+$ node generate-wallets.js
+```
+
+# Usage
+
+1. Deploy the contract you are working on
+
+```
+$ node contract.js deploy <contract name>
+```
+This command will find the contract file `<contract name>.js` and its initial state file `<contract name>.json` situated in `/contracts/` directory.
+
+2. Edit `INPUT.js` as you like
+
+3. Interact with the last contract deployed
+
+```
+$ node contract.js interact [wallet number (opt: default=0)]
+```
+
+And that's it 🙂
+
+----
+
+Also, you can read the contract state at anytime by using:
+```
+$ node contract.js read
+```
 
 # Troubleshooting
 

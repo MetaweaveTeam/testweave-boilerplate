@@ -2,3 +2,4 @@ __TRASH__
 node_modules
 contracts/*
 !contracts/hello-world.js*
+src/.local/wallets/*.json
