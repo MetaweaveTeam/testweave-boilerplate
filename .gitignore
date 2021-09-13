@@ -3,3 +3,4 @@ node_modules
 contracts/*
 !contracts/hello-world.js*
 src/.local/wallets/*.json
+src/INPUT.custom.js

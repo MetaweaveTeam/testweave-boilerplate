@@ -4,7 +4,7 @@ import TestWeave from 'testweave-sdk';
 import { readContract, interactWrite, interactWriteDryRun } from 'smartweave';
 import fs from 'fs';
 const CONF = JSON.parse(fs.readFileSync('./.local/contract.json').toString());
-import INPUT from '../INPUT.js';
+import {input, target, winstonQty} from '../INPUT.js';
 
 const interact = async (walletN = 0) => {
   if(walletN < 0 || walletN > 4){
@@ -24,10 +24,18 @@ const interact = async (walletN = 0) => {
   console.log('\n---- information ----');
   console.log(`\ncontract ID: ${CONF.contract_id}\n`);
   console.log(`wallet no ${walletN}: ${walletAddr}`)
-  console.log("input: ", INPUT);
+  console.log("input: ", input);
 
   console.log('\n---- dry run ----');
-  const output = await interactWriteDryRun(arweave, jwk, CONF.contract_id, INPUT);
+  const output = await interactWriteDryRun(
+    arweave,
+    jwk,
+    CONF.contract_id,
+    input,
+    [],
+    target,
+    winstonQty
+  );
   console.log("\noutput: ", output);
 
   console.log('\noutput.state: ', output.state);
@@ -37,7 +45,15 @@ const interact = async (walletN = 0) => {
     console.log("\nError: This interaction could't be executed.\n");
   else {
     console.log('\n---- interact write ----');
-    const txid = await interactWrite(arweave, jwk, CONF.contract_id, INPUT);
+    const txid = await interactWrite(
+      arweave,
+      jwk,
+      CONF.contract_id,
+      input,
+      [],
+      target,
+      winstonQty
+    );
     console.log("\ntxid: ", txid);
     console.log("mining...");
     await testWeave.mine();
