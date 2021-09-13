@@ -34,7 +34,7 @@ const interact = async (walletN = 0) => {
 
   // No error, let's interact for real
   if(output.type !== 'ok')
-    console.log('')
+    console.log("\nError: This interaction could't be executed.\n");
   else {
     console.log('\n---- interact write ----');
     const txid = await interactWrite(arweave, jwk, CONF.contract_id, INPUT);
@@ -49,11 +49,12 @@ const interact = async (walletN = 0) => {
     await interactWrite(arweave, jwk, CONF.contract_id, {});
     await testWeave.mine();
     await testWeave.mine();
+
+    console.log('\n---- new contract state ----\n')
+    const contractState = await readContract(arweave, CONF.contract_id);
+    console.log(contractState, '\n');
   }
 
-  console.log('\n---- new contract state ----\n')
-  const contractState = await readContract(arweave, CONF.contract_id);
-  console.log(contractState, '\n');
 };
 
 export default interact;
