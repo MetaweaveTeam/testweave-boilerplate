@@ -1,6 +1,6 @@
 # Purpose
 
-Here is a simple boilerplate to code smartweave contracts and iterate tests quickly.
+Here is a simple boilerplate used by ArgoraTeam to code smartweave contracts and iterate tests quickly.
 
 # Getting started
 
