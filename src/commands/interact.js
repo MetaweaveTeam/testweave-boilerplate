@@ -42,7 +42,7 @@ const interact = async (walletN = 0) => {
 
   // No error, let's interact for real
   if(output.type !== 'ok')
-    console.log("\nError: This interaction could't be executed.\n");
+    console.log(`\nError: ${output.result}\n`);
   else {
     console.log('\n---- interact write ----');
     const txid = await interactWrite(
